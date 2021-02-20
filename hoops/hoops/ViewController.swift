@@ -15,10 +15,51 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load the "Box" scene from the "Experience" Reality File
-        let boxAnchor = try! Experience.loadBox()
+        // create anchor entity
+        // this object will provide a central 'tether' to keep everything in AR worldspace
+        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1.0, 1.0]);
+        arView.scene.addAnchor(anchor);
         
-        // Add the box anchor to the scene
-        arView.scene.anchors.append(boxAnchor)
+        let worldObjects: [Entity] = loadBasketballMesh();
+        
+        for model in worldObjects {
+            anchor.addChild(model);
+        }
+        
     }
+    
+    private func loadBasketballMesh() -> [Entity] {
+        var worldObjects: [Entity] = [];
+        
+        // generate sphere mesh and mesh material
+        let basketballMesh = MeshResource.generateSphere(radius: 0.242);
+        let basketballMaterial = SimpleMaterial(color: .orange, isMetallic: false);
+        
+        // assign mesh to ModelEntity object
+        let basketballModel = ModelEntity(mesh: basketballMesh, materials: [basketballMaterial]);
+        
+        do {
+            let hoopModel: Entity;
+            try hoopModel = ModelEntity.load(named: "basketball_hoop.usdz");
+            worldObjects.append(hoopModel);
+        } catch BasketballError.runtimeError("File Not Found") {
+            print("Basketball hoop model not found");
+        } catch {
+            print("Unexpected errors");
+        }
+        
+        
+        worldObjects.append(basketballModel);
+        
+        worldObjects[0].position = [0, 0, 0];
+        worldObjects[1].position = [5, 0, 5];
+        
+        return worldObjects;
+    }
+    
+    
+}
+
+enum BasketballError: Error {
+    case runtimeError(String)
 }

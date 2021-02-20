@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		41BFFAA925E0C0EB00755174 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFAA825E0C0EB00755174 /* AppDelegate.swift */; };
 		41BFFAAB25E0C0EB00755174 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFAAA25E0C0EB00755174 /* ViewController.swift */; };
-		41BFFAAD25E0C0EB00755174 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFAAC25E0C0EB00755174 /* Experience.rcproject */; };
 		41BFFAB025E0C0EB00755174 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BFFAAE25E0C0EB00755174 /* Main.storyboard */; };
 		41BFFAB225E0C0EC00755174 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41BFFAB125E0C0EC00755174 /* Assets.xcassets */; };
 		41BFFAB525E0C0EC00755174 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41BFFAB325E0C0EC00755174 /* LaunchScreen.storyboard */; };
 		41BFFAC025E0C0EC00755174 /* hoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFABF25E0C0EC00755174 /* hoopsTests.swift */; };
 		41BFFACB25E0C0EC00755174 /* hoopsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFACA25E0C0EC00755174 /* hoopsUITests.swift */; };
+		41BFFAE025E0D7A200755174 /* basketball_hoop.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 		41BFFAA525E0C0EB00755174 /* hoops.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hoops.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BFFAA825E0C0EB00755174 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41BFFAAA25E0C0EB00755174 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		41BFFAAC25E0C0EB00755174 /* Experience.rcproject */ = {isa = PBXFileReference; lastKnownFileType = file.rcproject; path = Experience.rcproject; sourceTree = "<group>"; };
 		41BFFAAF25E0C0EB00755174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41BFFAB125E0C0EC00755174 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41BFFAB425E0C0EC00755174 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +48,7 @@
 		41BFFAC625E0C0EC00755174 /* hoopsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = hoopsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		41BFFACA25E0C0EC00755174 /* hoopsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hoopsUITests.swift; sourceTree = "<group>"; };
 		41BFFACC25E0C0EC00755174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = basketball_hoop.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +99,10 @@
 		41BFFAA725E0C0EB00755174 /* hoops */ = {
 			isa = PBXGroup;
 			children = (
+				41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */,
+				41BFFADE25E0D5C300755174 /* assets */,
 				41BFFAA825E0C0EB00755174 /* AppDelegate.swift */,
 				41BFFAAA25E0C0EB00755174 /* ViewController.swift */,
-				41BFFAAC25E0C0EB00755174 /* Experience.rcproject */,
 				41BFFAAE25E0C0EB00755174 /* Main.storyboard */,
 				41BFFAB125E0C0EC00755174 /* Assets.xcassets */,
 				41BFFAB325E0C0EC00755174 /* LaunchScreen.storyboard */,
@@ -126,6 +127,13 @@
 				41BFFACC25E0C0EC00755174 /* Info.plist */,
 			);
 			path = hoopsUITests;
+			sourceTree = "<group>";
+		};
+		41BFFADE25E0D5C300755174 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +241,7 @@
 			files = (
 				41BFFAB525E0C0EC00755174 /* LaunchScreen.storyboard in Resources */,
 				41BFFAB225E0C0EC00755174 /* Assets.xcassets in Resources */,
+				41BFFAE025E0D7A200755174 /* basketball_hoop.usdz in Resources */,
 				41BFFAB025E0C0EB00755174 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +269,6 @@
 			files = (
 				41BFFAAB25E0C0EB00755174 /* ViewController.swift in Sources */,
 				41BFFAA925E0C0EB00755174 /* AppDelegate.swift in Sources */,
-				41BFFAAD25E0C0EB00755174 /* Experience.rcproject in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
