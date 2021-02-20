@@ -12,21 +12,25 @@ class ViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
     
+    // renders to the ios display
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // create anchor entity
         // this object will provide a central 'tether' to keep everything in AR worldspace
-        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1.0, 1.0]);
+        let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [1.0, 1.0]); // 1 meters squared
         arView.scene.addAnchor(anchor);
         
+        // Loads the meshes and add it to an array
         let worldObjects: [Entity] = loadBasketballMesh();
         
+        // renders models to the app
         for model in worldObjects {
             anchor.addChild(model);
         }
         
     }
+    
     
     private func loadBasketballMesh() -> [Entity] {
         var worldObjects: [Entity] = [];
@@ -51,8 +55,9 @@ class ViewController: UIViewController {
         
         worldObjects.append(basketballModel);
         
-        worldObjects[0].position = [0, 0, 0];
-        worldObjects[1].position = [5, 0, 5];
+                                // X  Y  Z
+        worldObjects[0].position = [0, 0, -200]; // hoop
+        worldObjects[1].position = [0, 1.25, 0]; // basketball
         
         return worldObjects;
     }
