@@ -11,6 +11,7 @@ import RealityKit
 class ViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
+    var worldObjects: [Entity]
     
     // renders to the ios display
     override func viewDidLoad() {
@@ -25,7 +26,7 @@ class ViewController: UIViewController {
         //arView.environment.sceneUnderstanding.options.insert(.occlusion);
         arView.debugOptions.insert(.showSceneUnderstanding);
         // Loads the meshes and add it to an array
-        let worldObjects: [Entity] = loadBasketballMesh();
+        worldObjects = loadBasketballMesh();
         
         // renders models to the app
         for model in worldObjects {
@@ -71,6 +72,9 @@ class ViewController: UIViewController {
     
     func shootBall() {
         //arView.scene.
+        let force = CGVector.init()
+        worldObjects[1]?.physicsBody?.applyForce()
+        
     }
 }
 
