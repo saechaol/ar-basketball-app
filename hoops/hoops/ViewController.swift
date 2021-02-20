@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [0.1, 0.1]); // 1 meters squared
         arView.scene.addAnchor(anchor);
         arView.environment.sceneUnderstanding.options.insert(.physics);
+        //arView.environment.sceneUnderstanding.options.insert(.occlusion);
+        arView.debugOptions.insert(.showSceneUnderstanding);
         // Loads the meshes and add it to an array
         let worldObjects: [Entity] = loadBasketballMesh();
         
@@ -67,7 +69,9 @@ class ViewController: UIViewController {
         return worldObjects;
     }
     
-    
+    func shootBall() {
+        //arView.scene.
+    }
 }
 
 enum BasketballError: Error {
