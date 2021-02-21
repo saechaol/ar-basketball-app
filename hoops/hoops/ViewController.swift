@@ -11,7 +11,7 @@ import RealityKit
 class ViewController: UIViewController {
     
     @IBOutlet var arView: ARView!
-    var worldObjects: [Entity]
+    var worldObjects: [ModelEntity] = []
     
     // renders to the ios display
     override func viewDidLoad() {
@@ -32,12 +32,14 @@ class ViewController: UIViewController {
         for model in worldObjects {
             anchor.addChild(model);
         }
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(executePan))
+        view.addGestureRecognizer(pan)
         
     }
     
     
-    private func loadBasketballMesh() -> [Entity] {
-        var worldObjects: [Entity] = [];
+    private func loadBasketballMesh() -> [ModelEntity] {
+        var worldObjects: [ModelEntity] = [];
         
         // generate sphere mesh and mesh material
         let basketballMesh = MeshResource.generateSphere(radius: 0.242);
@@ -46,8 +48,8 @@ class ViewController: UIViewController {
         // assign mesh to ModelEntity object
         let basketballModel = ModelEntity(mesh: basketballMesh, materials: [basketballMaterial]);
         do {
-            let hoopModel: Entity;
-            try hoopModel = ModelEntity.load(named: "basketball_hoop.usdz");
+            let hoopModel: ModelEntity;
+            try hoopModel = ModelEntity.loadModel(named: "basketball_hoop.usdz");
             hoopModel.generateCollisionShapes(recursive: true)
             worldObjects.append(hoopModel);
         } catch BasketballError.runtimeError("File Not Found") {
@@ -69,11 +71,38 @@ class ViewController: UIViewController {
         
         return worldObjects;
     }
-    
-    func shootBall() {
+    @objc func executePan(gesture: UIPanGestureRecognizer){
+        
+        //print("Panning");
+        if(gesture.state == .began){
+            let start = gesture.location(in: view)
+            print("Beginning at:",start.x,start.y)
+            
+            //let hitResult = view.hitTest(start, options:[:])
+        }
+        else if(gesture.state == .cancelled){
+            print("Cancelled")
+        }
+        else if(gesture.state == .ended){
+            let velocity = gesture.velocity(in: view);
+            let x = Double(velocity.x);
+            let y = Double(velocity.y);
+            let end = gesture.location(in: view)
+            var angle = atan2(y,x) * 180.0/Double.pi;
+            
+            if(angle < 0) {
+                angle += 360.0;
+            }
+            print("Angle:",angle)
+            print("Velocity:",velocity)
+            print("Ending at:",end.x,end.y)
+            shootBall(velocity: velocity)
+        }
+    }
+    func shootBall(velocity: CGPoint) {
         //arView.scene.
-        let force = CGVector.init()
-        worldObjects[1]?.physicsBody?.applyForce()
+        let force = SIMD3<Float>.init(Float(velocity.x),0,Float(velocity.y));
+        worldObjects[1].applyLinearImpulse(force, relativeTo: nil);
         
     }
 }
