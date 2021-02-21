@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [0.1, 0.1]); // 1 meters squared
         anchor.name = "RootAnchor"
         arView.scene.addAnchor(anchor);
-        arView.environment.sceneUnderstanding.options.insert(.physics);
+     //   arView.environment.sceneUnderstanding.options.insert(.physics);
      //   arView.environment.sceneUnderstanding.options.insert(.occlusion);
      //   arView.debugOptions.insert(.showSceneUnderstanding);
         // Loads the meshes and add it to an array
@@ -42,6 +42,8 @@ class ViewController: UIViewController {
         
         let button = drawBallButton();
         view.addSubview(button);
+        
+        
         
     }
     
@@ -64,7 +66,7 @@ class ViewController: UIViewController {
             
             loopModel.name = "Loop";
             //loopModel.setScale(sizeScalar, relativeTo: nil);
-            loopModel.generateCollisionShapes(recursive: true);
+            //loopModel.generateCollisionShapes(recursive: true);
             loopModel.physicsBody = .init();
             loopModel.physicsBody?.mode = .static;
             //hoopModel.addChild(loopModel);
@@ -84,11 +86,10 @@ class ViewController: UIViewController {
         worldObjects.append(basketballModel);
         
                                  // X   Y   Z
-        worldObjects[0].position = [0, 0, -15]; // hoop
-        worldObjects[1].position = [0, 5,-15]; // loop
+        worldObjects[0].position = [0, -0.5, -5]; // hoop
+        worldObjects[1].position = [0, 2.5, -4.1]; // loop
         worldObjects[2].position = [0, -2, -5]; // plane
         worldObjects[3].position = [0, 1.5, -0.5]; // basketball
-        
         
         return worldObjects;
     }
@@ -202,6 +203,7 @@ class ViewController: UIViewController {
         
         anchor?.removeChild((anchor?.findEntity(named: ballName))!);
         anchor?.addChild(ball);
+        
     }
     
 }
