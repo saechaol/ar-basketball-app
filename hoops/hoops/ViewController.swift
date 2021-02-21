@@ -106,12 +106,15 @@ class ViewController: UIViewController {
             print("Ending at:",end.x,end.y)
             shootBall(velocity: velocity)
         }
+        
     }
     func shootBall(velocity: CGPoint) {
         //arView.scene.
-        let force = SIMD3<Float>.init(Float(velocity.x),0,Float(velocity.y));
+        print(arView.cameraTransform);
+        let force = SIMD3<Float>.init(Float(velocity.x/1000),Float(sqrt(pow(velocity.x,2)+pow(velocity.y,2))/500),Float(velocity.y/1000));
         worldObjects[1].applyLinearImpulse(force, relativeTo: nil);
-        
+        //print(worldObjects[1].physicsMotion.debugDescription);
+        //print(worldObjects[1].physicsBody.debugDescription);
     }
     
     private func generateGroundPlane() -> ModelEntity {
@@ -122,6 +125,7 @@ class ViewController: UIViewController {
         groundPlaneModel.generateCollisionShapes(recursive: true)
         groundPlaneModel.physicsBody = .init();
         groundPlaneModel.physicsBody?.mode = .static;
+        
         
         return groundPlaneModel;
     }
