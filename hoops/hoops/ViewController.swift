@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         let anchor = AnchorEntity(plane: .horizontal, minimumBounds: [0.1, 0.1]); // 1 meters squared
         arView.scene.addAnchor(anchor);
         arView.environment.sceneUnderstanding.options.insert(.physics);
-        //arView.environment.sceneUnderstanding.options.insert(.occlusion);
-        arView.debugOptions.insert(.showSceneUnderstanding);
+     //   arView.environment.sceneUnderstanding.options.insert(.occlusion);
+     //   arView.debugOptions.insert(.showSceneUnderstanding);
         // Loads the meshes and add it to an array
         worldObjects = loadBasketballMesh();
         
@@ -50,7 +50,11 @@ class ViewController: UIViewController {
         do {
             let hoopModel: ModelEntity;
             try hoopModel = ModelEntity.loadModel(named: "basketball_hoop.usdz");
-            hoopModel.generateCollisionShapes(recursive: true)
+            let sizeScalar = SIMD3<Float>(0.05, 0.05, 0.05)
+            hoopModel.setScale(sizeScalar, relativeTo: nil);
+            hoopModel.generateCollisionShapes(recursive: true);
+            hoopModel.physicsBody = .init();
+            hoopModel.physicsBody?.mode = .static;
             worldObjects.append(hoopModel);
         } catch BasketballError.runtimeError("File Not Found") {
             print("Basketball hoop model not found");
@@ -63,11 +67,15 @@ class ViewController: UIViewController {
         basketballModel.physicsBody = .init();
         basketballModel.physicsBody?.mode = .dynamic;
         
+        let groundPlane = generateGroundPlane()
+        
         worldObjects.append(basketballModel);
+        worldObjects.append(groundPlane);
         
                                  // X   Y   Z
-        worldObjects[0].position = [0, -1, -200]; // hoop
+        worldObjects[0].position = [0, 1, -10]; // hoop
         worldObjects[1].position = [0, 1.5, 0]; // basketball
+        worldObjects[2].position = [0, -2, -5]; // plane
         
         return worldObjects;
     }
@@ -104,6 +112,18 @@ class ViewController: UIViewController {
         let force = SIMD3<Float>.init(Float(velocity.x),0,Float(velocity.y));
         worldObjects[1].applyLinearImpulse(force, relativeTo: nil);
         
+    }
+    
+    private func generateGroundPlane() -> ModelEntity {
+        let groundMesh = MeshResource.generatePlane(width: 10, depth: 20);
+        let groundMat = SimpleMaterial(color: .orange, isMetallic: true);
+        let groundPlaneModel = ModelEntity(mesh: groundMesh, materials: [groundMat]);
+        
+        groundPlaneModel.generateCollisionShapes(recursive: true)
+        groundPlaneModel.physicsBody = .init();
+        groundPlaneModel.physicsBody?.mode = .static;
+        
+        return groundPlaneModel;
     }
 }
 
