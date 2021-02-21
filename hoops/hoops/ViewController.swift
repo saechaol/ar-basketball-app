@@ -65,7 +65,7 @@ class ViewController: UIViewController {
         // generate collision and physics object of ball
         basketballModel.generateCollisionShapes(recursive: true)
         basketballModel.physicsBody = .init();
-        basketballModel.physicsBody?.mode = .dynamic;
+        basketballModel.physicsBody?.mode = .static;
         
         let groundPlane = generateGroundPlane()
         
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         
                                  // X   Y   Z
         worldObjects[0].position = [0, 1, -10]; // hoop
-        worldObjects[1].position = [0, 1.5, 0]; // basketball
+        worldObjects[1].position = [0, 0, -0.1]; // basketball
         worldObjects[2].position = [0, -2, -5]; // plane
         
         return worldObjects;
@@ -109,12 +109,11 @@ class ViewController: UIViewController {
         
     }
     func shootBall(velocity: CGPoint) {
-        //arView.scene.
-        print(arView.cameraTransform);
         let force = SIMD3<Float>.init(Float(velocity.x/1000),Float(sqrt(pow(velocity.x,2)+pow(velocity.y,2))/500),Float(velocity.y/1000));
+        if(worldObjects[1].physicsBody?.mode == .static){
+            worldObjects[1].physicsBody?.mode = .dynamic;
+        }
         worldObjects[1].applyLinearImpulse(force, relativeTo: nil);
-        //print(worldObjects[1].physicsMotion.debugDescription);
-        //print(worldObjects[1].physicsBody.debugDescription);
     }
     
     private func generateGroundPlane() -> ModelEntity {
