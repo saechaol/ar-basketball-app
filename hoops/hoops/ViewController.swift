@@ -116,7 +116,7 @@ class ViewController: UIViewController {
     
     private func generateGroundPlane() -> ModelEntity {
         let groundMesh = MeshResource.generatePlane(width: 10, depth: 20);
-        let groundMat = SimpleMaterial(color: .orange, isMetallic: true);
+        let groundMat = SimpleMaterial(color: .lightGray, isMetallic: true);
         let groundPlaneModel = ModelEntity(mesh: groundMesh, materials: [groundMat]);
         
         groundPlaneModel.generateCollisionShapes(recursive: true)
