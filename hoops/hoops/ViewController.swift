@@ -2,7 +2,11 @@
 //  ViewController.swift
 //  hoops
 //
-//  Created by 세차오 루카스 on 2/19/21.
+//  Created by Lucas Saechao
+//  Created by Ryan Kwong
+//  Created by Patrik Martin
+//
+//  on 2/19/21.
 //
 
 import UIKit
