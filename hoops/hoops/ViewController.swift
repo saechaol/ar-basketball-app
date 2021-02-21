@@ -52,14 +52,25 @@ class ViewController: UIViewController {
         let basketballModel = generateBall();
         do {
             let hoopModel: ModelEntity;
+            let loopModel: ModelEntity;
             try hoopModel = ModelEntity.loadModel(named: "basketball_hoop.usdz");
-            let sizeScalar = SIMD3<Float>(0.05, 0.05, 0.05)
+            try loopModel = ModelEntity.loadModel(named: "loop.usdz")
+            //let sizeScalar = SIMD3<Float>(0.05, 0.05, 0.05)
             hoopModel.name = "Hoop";
-            hoopModel.setScale(sizeScalar, relativeTo: nil);
+            //hoopModel.setScale(sizeScalar, relativeTo: nil);
             hoopModel.generateCollisionShapes(recursive: true);
             hoopModel.physicsBody = .init();
             hoopModel.physicsBody?.mode = .static;
+            
+            loopModel.name = "Loop";
+            //loopModel.setScale(sizeScalar, relativeTo: nil);
+            loopModel.generateCollisionShapes(recursive: true);
+            loopModel.physicsBody = .init();
+            loopModel.physicsBody?.mode = .static;
+            //hoopModel.addChild(loopModel);
             worldObjects.append(hoopModel);
+            worldObjects.append(loopModel);
+            
         } catch BasketballError.runtimeError("File Not Found") {
             print("Basketball hoop model not found");
         } catch {
@@ -69,12 +80,15 @@ class ViewController: UIViewController {
         let groundPlane = generateGroundPlane()
         
         worldObjects.append(groundPlane);
+        
         worldObjects.append(basketballModel);
         
                                  // X   Y   Z
-        worldObjects[0].position = [0, 1, -10]; // hoop
-        worldObjects[1].position = [0, -2, -5]; // plane
-        worldObjects[2].position = [0, 1.5, -0.5]; // basketball
+        worldObjects[0].position = [0, 0, -15]; // hoop
+        worldObjects[1].position = [0, 5,-15]; // loop
+        worldObjects[2].position = [0, -2, -5]; // plane
+        worldObjects[3].position = [0, 1.5, -0.5]; // basketball
+        
         
         return worldObjects;
     }
@@ -134,11 +148,11 @@ class ViewController: UIViewController {
             Float(velocity.y/1000)
         );
         
-        if(worldObjects[2].physicsBody?.mode == .static){
-            worldObjects[2].physicsBody?.mode = .dynamic;
+        if(worldObjects[3].physicsBody?.mode == .static){
+            worldObjects[3].physicsBody?.mode = .dynamic;
         }
         
-        worldObjects[2].applyLinearImpulse(force, relativeTo: nil);
+        worldObjects[3].applyLinearImpulse(force, relativeTo: nil);
     }
     
     private func generateGroundPlane() -> ModelEntity {
@@ -181,7 +195,7 @@ class ViewController: UIViewController {
         let ballName = "Ball" + String(ballCount - 1);
         let ball = generateBall();
         ball.position = [0, 1.5, -0.5]; // basketball
-        worldObjects[2] = ball; // set control to current ball
+        worldObjects[3] = ball; // set control to current ball
         // print(arView.scene.anchors);
         
         let anchor = arView.scene.findEntity(named: "RootAnchor")

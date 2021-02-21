@@ -15,6 +15,7 @@
 		41BFFAC025E0C0EC00755174 /* hoopsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFABF25E0C0EC00755174 /* hoopsTests.swift */; };
 		41BFFACB25E0C0EC00755174 /* hoopsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41BFFACA25E0C0EC00755174 /* hoopsUITests.swift */; };
 		41BFFAE025E0D7A200755174 /* basketball_hoop.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */; };
+		F557900025E2383D00330229 /* loop.usdz in Resources */ = {isa = PBXBuildFile; fileRef = F5578FFF25E2383D00330229 /* loop.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		41BFFACA25E0C0EC00755174 /* hoopsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hoopsUITests.swift; sourceTree = "<group>"; };
 		41BFFACC25E0C0EC00755174 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = basketball_hoop.usdz; sourceTree = "<group>"; };
+		F5578FFF25E2383D00330229 /* loop.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = loop.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		41BFFAA725E0C0EB00755174 /* hoops */ = {
 			isa = PBXGroup;
 			children = (
+				F5578FFF25E2383D00330229 /* loop.usdz */,
 				41BFFADF25E0D7A200755174 /* basketball_hoop.usdz */,
 				41BFFADE25E0D5C300755174 /* assets */,
 				41BFFAA825E0C0EB00755174 /* AppDelegate.swift */,
@@ -240,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41BFFAB525E0C0EC00755174 /* LaunchScreen.storyboard in Resources */,
+				F557900025E2383D00330229 /* loop.usdz in Resources */,
 				41BFFAB225E0C0EC00755174 /* Assets.xcassets in Resources */,
 				41BFFAE025E0D7A200755174 /* basketball_hoop.usdz in Resources */,
 				41BFFAB025E0C0EB00755174 /* Main.storyboard in Resources */,
@@ -445,13 +449,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3YKP7DGVC;
+				DEVELOPMENT_TEAM = 9H23AHC3R7;
 				INFOPLIST_FILE = hoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.saechaol.hoops;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rykwong.hoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,13 +468,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D3YKP7DGVC;
+				DEVELOPMENT_TEAM = 9H23AHC3R7;
 				INFOPLIST_FILE = hoops/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.saechaol.hoops;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rykwong.hoops;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
